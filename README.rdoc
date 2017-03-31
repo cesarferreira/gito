@@ -1,0 +1,6 @@
+= gito
+
+Describe your project here
+
+:include:gito.rdoc
+

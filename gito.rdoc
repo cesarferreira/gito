@@ -1,0 +1,5 @@
+= gito
+
+Generate this with
+    gito rdoc
+After you have described your command line interface
