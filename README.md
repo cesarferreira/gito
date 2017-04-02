@@ -4,13 +4,17 @@
 [![Code Climate](https://codeclimate.com/github/cesarferreira/gito/badges/gpa.svg)](https://codeclimate.com/github/cesarferreira/gito)
 [![Inline docs](http://inch-ci.org/github/cesarferreira/gito.svg?branch=master)](http://inch-ci.org/github/cesarferreira/gito)
 
-git helper tool to **clone**/**open**/**install**/**edit** a git project with a one-liner
+git helper tool to **clone**/**open**/**install**/**edit** a git project with a one-liner.
+
+-----------
+
+<p align="center">
+  > gito **cesarferreira/dryrun**
+</p>
 
 <p align="center">
 <img src="extras/screenshot.png" width="100%" />
 </p>
-
-> gito **cesarferreira/dryrun**
 
 Will save you this repetitive work:
 ```bash
@@ -51,6 +55,10 @@ gito https://github.com/cesarferreira/dryrun
 # git clone from github and enter the folder
 gito https://bitbucket.org/cesarferreira/project
 ```
+
+## Installation
+
+    $ gem install gito
 
 ## Why?
 A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, go to the terminal , and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install`... Not anymore!
