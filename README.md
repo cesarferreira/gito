@@ -6,6 +6,7 @@
 
 git helper tool to **clone**/**open**/**install**/**edit** a git project with a one-liner.
 
+-----------
 
 <p align="center">
   > <strong>gito</strong> <i>cesarferreira/dryrun</i>
