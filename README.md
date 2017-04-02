@@ -9,7 +9,7 @@ git helper tool to **clone**/**open**/**install**/**edit** a git project with a 
 -----------
 
 <p align="center">
-  > gito **cesarferreira/dryrun**
+  > <strong>gito</strong> <i>cesarferreira/dryrun</i>
 </p>
 
 <p align="center">
