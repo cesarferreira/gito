@@ -14,14 +14,19 @@ Will save you this repetitive work:
 ```bash
 # clone it
 git clone http://github.com/cesarferreira/dryrun
+
 # change directory
 cd dryrun
+
 # open an editor of choice if --editor flag
 atom .
+
 # open the folder if --open flag
 open .
+
 # find out what kind of project it is
 project_type_detector
+
 # because `ruby` was detected
 bundle install
 ```
