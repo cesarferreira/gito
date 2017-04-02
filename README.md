@@ -6,17 +6,14 @@
 
 git helper tool to **clone**/**open**/**install**/**edit** a git project with a one-liner.
 
------------
-
-<p align="center">
-<img src="extras/screenshot.png" width="100%" />
-</p>
 
 <p align="center">
   > <strong>gito</strong> <i>cesarferreira/dryrun</i>
 </p>
 
------------
+<p align="center">
+<img src="extras/screenshot.png" width="100%" />
+</p>
 
 Will save you this repetitive work:
 ```bash
