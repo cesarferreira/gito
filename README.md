@@ -1,6 +1,6 @@
 # gito
 [![Gem Version](https://badge.fury.io/rb/gito.svg)](https://badge.fury.io/rb/gito)
-[![Build Status](https://travis-ci.org/cesarferreira/gito.svg?branch=master)](https://travis-ci.org/cesarferreira/gito)  [![security](https://hakiri.io/github/cesarferreira/gito/master.svg)](https://hakiri.io/github/cesarferreira/gito/master)
+[![Build Status](https://travis-ci.org/cesarferreira/gito.svg?branch=master)](https://travis-ci.org/cesarferreira/gito)
 [![Code Climate](https://codeclimate.com/github/cesarferreira/gito/badges/gpa.svg)](https://codeclimate.com/github/cesarferreira/gito)
 [![Inline docs](http://inch-ci.org/github/cesarferreira/gito.svg?branch=master)](http://inch-ci.org/github/cesarferreira/gito)
 
@@ -18,7 +18,7 @@ atom . # because it's your editor of choice
 ```
 
 ## Why?
-A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the , and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install`... Not anymore!
+A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, , and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install`... Not anymore!
 
 
 ## Contributing
