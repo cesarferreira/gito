@@ -1,23 +1,22 @@
 # Ensure we require the local version and not one we might have installed already
 require File.join([File.dirname(__FILE__),'lib','gito','version.rb'])
-spec = Gem::Specification.new do |s| 
+spec = Gem::Specification.new do |s|
   s.name = 'gito'
   s.version = Gito::VERSION
-  s.author = 'Your Name Here'
-  s.email = 'your@email.address.com'
+  s.authors       = ['cesar ferreira']
+  s.email         = ['cesar.manuel.ferreira@gmail.com']
   s.homepage = 'http://your.website.com'
   s.platform = Gem::Platform::RUBY
-  s.summary = 'A description of your project'
+  s.summary = 'git helper tool to clone/open/install/edit a git project with a one-liner'
   s.files = `git ls-files`.split("
 ")
   s.require_paths << 'lib'
-  s.has_rdoc = true
-  s.extra_rdoc_files = ['README.rdoc','gito.rdoc']
-  s.rdoc_options << '--title' << 'gito' << '--main' << 'README.rdoc' << '-ri'
   s.bindir = 'bin'
   s.executables << 'gito'
-  s.add_development_dependency('rake')
-  s.add_development_dependency('rdoc')
-  s.add_development_dependency('aruba')
-  s.add_runtime_dependency('gli','2.16.0')
+  s.add_development_dependency 'rake', '~> 10.0'
+  s.add_development_dependency 'pry-byebug', '~> 3.2'
+  s.add_development_dependency 'rspec'
+
+  s.add_dependency 'bundler', '~> 1.7'
+  s.add_dependency 'colorize', '~> 0.7'
 end
