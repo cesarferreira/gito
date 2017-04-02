@@ -6,9 +6,11 @@
 
 git helper tool to **clone**/**open**/**install**/**edit** a git project with a one-liner
 
-> gito **cesarferreira/dryrun**
+<p align="center">
+<img src="extras/screenshot.png" width="100%" />
+</p>
 
-// INSERT SCREENSHOT
+> gito **cesarferreira/dryrun**
 
 Will save you this repetitive work:
 ```bash
