@@ -49,54 +49,36 @@ class MainApp
     end
   end
 
-  def get_git_url(url)
-
-    url = url.split('?').first
-    url.chop! if url.end_with? '/'
-
-    is_valid_url = url =~ /\A#{URI::regexp(['http', 'https'])}\z/ || url.include?('git@')
-
-    unless is_valid_url
-
-      valid_shortcut = url.split('/').size == 2
-
-      if valid_shortcut
-        url = 'https://github.com/' + url
-      else
-        url = nil
-      end
-    end
-    url
-  end
-
-  def cd_to_url(destination)
-    # TODO cd to destination
-  end
-
-  def detect_project_type
-
-  end
-
-  def install_dependencies
-
-  end
-
   def call
-
-    @url = get_git_url(@url)
 
     if @url.nil?
       puts 'You need to insert a valid GIT URL/folder'
       exit 1
     end
 
-    git_helper = Project.new(@url)
+    project = Project.new(@url)
 
-    # clone the repository
-    # repository_path = git_helper.clone
+    # Clone the repository
+    project.clone
 
-    # change directory
-    cd_to_url(git_helper.destination)
+    # Change to directory
+    project.change_directory
+
+    # Detect project type
+    project.detect_project_type
+
+    # Install dependencies
+    project.install_dependencies
+
+    # Open in editor
+    if @should_edit
+      project.open_editor
+    end
+
+    # Open in Finder
+    if @should_open
+      project.open_folder
+    end
 
   end
 end

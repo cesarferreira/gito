@@ -16,26 +16,9 @@ git helper tool to **clone**/**open**/**install**/**edit** a git project with a 
 <img src="extras/screenshot.png" width="100%" />
 </p>
 
-Will save you this repetitive work:
-```bash
-# clone it
-git clone http://github.com/cesarferreira/dryrun
+## Why?
+A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, go to the terminal, git clone, find out the folder name, go to the folder and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install`... Not anymore!
 
-# change directory
-cd dryrun
-
-# open an editor of choice if --editor flag
-atom .
-
-# open the folder if --open flag
-open .
-
-# find out what kind of project it is
-project_type_detector
-
-# because `ruby` was detected
-bundle install
-```
 
 ## Usage
 
@@ -60,9 +43,29 @@ gito https://bitbucket.org/cesarferreira/project
 
     $ gem install gito
 
-## Why?
-A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, go to the terminal , and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install`... Not anymore!
+## Internally what happens?
 
+Sample:
+
+```bash
+# clone it
+git clone http://github.com/cesarferreira/dryrun
+
+# change directory
+cd dryrun
+
+# open an editor of choice if --editor flag
+atom .
+
+# open the folder if --open flag
+open .
+
+# find out what kind of project it is
+project_type_detector
+
+# because `ruby` was detected
+bundle install
+```
 
 ## Contributing
 I welcome and encourage all pull requests. It usually will take me within 24-48 hours to respond to any issue or request. Here are some basic rules to follow to ensure timely addition of your request:
