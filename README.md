@@ -8,15 +8,15 @@ git helper tool to **clone**/**open**/**install**/**edit** a git project with a 
 
 
 <p align="center">
-<img src="extras/recordit.gif" width="100%" />
+<img src="extras/recordit2.gif" width="100%" />
 </p>
 
 <p align="center">
-  > <strong>gito</strong> <i>cesarferreira/dryrun --edit</i>
+  > <strong>gito</strong> <i>cesarferreira/dryrun -e</i>
 </p>
 
 ## Why?
-A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, go to the terminal, git clone, find out the folder name, go to the folder and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install`... Not anymore!
+A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, go to the terminal, git clone, find out the folder name, go to the folder and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install` and open in your text editor of choice... Not anymore!
 
 
 ## Usage
@@ -28,7 +28,7 @@ Usage: gito GIT_URL [OPTIONS]
 Options
     -e, --edit                       Open the project on an editor
     -o, --open                       Open the project on Finder
-    -d, --dryrun                     Doesn't install the dependencies
+    -d, --dryrun                     Does not install the dependencies
     -h, --help                       Displays help
     -v, --version                    Displays the version
 ```
@@ -41,10 +41,10 @@ gito cesarferreira/dryrun
 # git clone, install, open and edit the project
 gito cesarferreira/dryrun --edit --open
 
-# git clone, install, open and edit the project
+# git clone, install, open and edit the project from github
 gito https://github.com/cesarferreira/dryrun -e -o
 
-# git clone, install,
+# git clone, install from another git source
 gito https://bitbucket.org/username/project
 ```
 
