@@ -46,36 +46,40 @@ class Project
   end
 
   def change_directory
-    temp_script_name = 'temp.sh'
-    AppUtils::execute 'echo "cd '+@destination+'" > ' + temp_script_name
-    AppUtils::execute '. '+temp_script_name
-    AppUtils::execute 'rm -rf ' + temp_script_name
-    puts Dir.pwd
+    # TODO aparently this doesn't work because ruby forks the terminal process and cant' communicate with his father
+
+    # temp_script_name = './temp.sh'
+    # AppUtils::execute 'echo "cd '+@destination+'" > ' + temp_script_name
+    # AppUtils::execute '. '+temp_script_name
+    # AppUtils::execute 'rm -rf ' + temp_script_name
+
+    puts "\nPlease change directory into the project"
+    puts "cd #{destination.green}"
   end
 
   def detect_project_type
     Dir.chdir @destination_dir
 
-    type = :unknown
+    @project_type = :unknown
 
-    if File.exist?('build.gradle')
-      type = :gradle
-    elsif File.exist?('package.json')
-      type = :node
-    elsif File.exist?('Gemfile')
-      type = :ruby
+    if File.exists?('build.gradle')
+      @project_type = :gradle
+    elsif File.exists?('package.json')
+      @project_type = :node
+    elsif File.exists?('Gemfile')
+      @project_type = :ruby
     end
-    type
+    @project_type
   end
 
   def install_dependencies
     case @project_type
       when :gradle
-        AppUtils::execute('./gradlew assemble')
+        go_inside_and_run('./gradlew assemble')
       when :node
-        AppUtils::execute('npm install')
+        go_inside_and_run('npm install')
       when :ruby
-        AppUtils::execute('bundle install')
+        go_inside_and_run('bundle install')
       else
         puts 'Unknown project type'
     end
@@ -103,7 +107,7 @@ class Project
     @destination_dir = Dir.pwd + "/#{@destination}"
 
     if File.directory?(@destination_dir)
-      puts 'The folder is not empty'
+      puts 'The folder is not empty...'.yellow
     else
       AppUtils.execute("git clone --depth 1 #{cloneable} #{@destination_dir}")
     end
@@ -112,10 +116,18 @@ class Project
   end
 
   def open_editor
-    puts "opening editor"
+    puts "Opening editor...".yellow
+    go_inside_and_run 'atom .'
   end
 
   def open_folder
-    puts 'opening folder'
+    puts 'Opening folder'.yellow
+    go_inside_and_run 'open .'
+  end
+
+  def go_inside_and_run(command)
+    Dir.chdir(@destination_dir) do
+      AppUtils::execute command
+    end
   end
 end

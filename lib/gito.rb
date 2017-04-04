@@ -16,6 +16,7 @@ class MainApp
     @app_path = nil
     @should_edit = false
     @should_open = false
+    @dryrun = false
 
     # Parse Options
     create_options_parser(arguments)
@@ -32,7 +33,11 @@ class MainApp
       end
 
       opts.on('-o', '--open', 'Open the project on Finder') do |edit|
-        @should_edit = true
+        @should_open = true
+      end
+
+      opts.on('-d', '--dryrun', 'Doesn\'t install the dependencies') do |dryrun|
+        @dryrun = true
       end
 
       opts.on('-h', '--help', 'Displays help') do
@@ -61,14 +66,13 @@ class MainApp
     # Clone the repository
     project.clone
 
-    # Change to directory
-    project.change_directory
-
     # Detect project type
     project.detect_project_type
 
-    # Install dependencies
-    project.install_dependencies
+    unless @dryrun
+      # Install dependencies
+      project.install_dependencies
+    end
 
     # Open in editor
     if @should_edit
@@ -79,6 +83,10 @@ class MainApp
     if @should_open
       project.open_folder
     end
+
+    # Change to directory
+    project.change_directory
+
 
   end
 end
