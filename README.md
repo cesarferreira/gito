@@ -23,20 +23,30 @@ A lot of times I find myself wanting to try some code from github and in order t
 ## Usage
 
 ```bash
-# git clone and enter the project folder
+$ gito -h
+Usage: gito GIT_URL [OPTIONS]
+
+Options
+    -e, --edit                       Open the project on an editor
+    -o, --open                       Open the project on Finder
+    -d, --dryrun                     Doesn't install the dependencies
+    -h, --help                       Displays help
+    -v, --version                    Displays the version
+```
+
+Examples:
+```bash
+# git clone this https://github.com/cesarferreira/dryrun
 gito cesarferreira/dryrun
 
-# git clone and enter the project folder and edit the project
-gito cesarferreira/dryrun -e
-
-# git clone and enter the project folder, open and edit the project
+# git clone, install, open and edit the project
 gito cesarferreira/dryrun --edit --open
 
-# git clone from github and enter the folder
-gito https://github.com/cesarferreira/dryrun
+# git clone, install, open and edit the project
+gito https://github.com/cesarferreira/dryrun -e -o
 
-# git clone from github and enter the folder
-gito https://bitbucket.org/cesarferreira/project
+# git clone, install,
+gito https://bitbucket.org/username/project
 ```
 
 ## Installation
