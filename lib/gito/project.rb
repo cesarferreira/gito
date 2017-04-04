@@ -54,7 +54,7 @@ class Project
     # AppUtils::execute 'rm -rf ' + temp_script_name
 
     puts "\nPlease change directory into the project"
-    puts "cd #{destination.green}"
+    puts "cd #{destination.yellow}"
   end
 
   def detect_project_type
@@ -69,6 +69,8 @@ class Project
     elsif File.exists?('Gemfile')
       @project_type = :ruby
     end
+
+    puts "Detected #{@project_type}...".yellow
     @project_type
   end
 
@@ -80,9 +82,7 @@ class Project
         go_inside_and_run('npm install')
       when :ruby
         go_inside_and_run('bundle install')
-      else
-        puts 'Unknown project type'
-    end
+      end
   end
 
   def cloneable_url
@@ -121,7 +121,7 @@ class Project
   end
 
   def open_folder
-    puts 'Opening folder'.yellow
+    puts 'Opening folder...'.yellow
     go_inside_and_run 'open .'
   end
 

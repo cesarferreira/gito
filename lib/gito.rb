@@ -87,6 +87,5 @@ class MainApp
     # Change to directory
     project.change_directory
 
-
   end
 end
