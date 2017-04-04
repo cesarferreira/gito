@@ -69,11 +69,6 @@ class MainApp
     # Detect project type
     project.detect_project_type
 
-    unless @dryrun
-      # Install dependencies
-      project.install_dependencies
-    end
-
     # Open in editor
     if @should_edit
       project.open_editor
@@ -82,6 +77,11 @@ class MainApp
     # Open in Finder
     if @should_open
       project.open_folder
+    end
+
+    unless @dryrun
+      # Install dependencies
+      project.install_dependencies
     end
 
     # Change to directory
