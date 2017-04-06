@@ -1,6 +1,7 @@
 ﻿require 'tmpdir'
 require 'fileutils'
 require 'uri'
+require 'json'
 require_relative './app_utils'
 require 'pry'
 
@@ -9,7 +10,7 @@ class Project
     @base_url = sanitize_url(url)
     @destination_dir = nil
     @destination = destination
-    @project_type = :unknown
+    @detector_json_path = '../detector.json'
   end
 
   def sanitize_url(url)
@@ -46,43 +47,37 @@ class Project
   end
 
   def change_directory
-    # TODO aparently this doesn't work because ruby forks the terminal process and cant' communicate with his father
+    # TODO aparently this doesn't work because ruby forks the terminal process and can't communicate with his parent
 
     # temp_script_name = './temp.sh'
     # AppUtils::execute 'echo "cd '+@destination+'" > ' + temp_script_name
     # AppUtils::execute '. '+temp_script_name
     # AppUtils::execute 'rm -rf ' + temp_script_name
 
-    puts "\nPlease change directory into the project"
+    puts "-------------------------------------------"
+    puts "Please change directory"
     puts "cd #{destination.yellow}"
+    puts "-------------------------------------------"
   end
 
-  def detect_project_type
-    Dir.chdir @destination_dir
+  def install_dependencies    
+    file = File.read(@detector_json_path)
+    types = JSON.parse(file)
+    chosen = nil
 
-    @project_type = :unknown
+    Dir.chdir(@destination_dir)
 
-    if File.exists?('build.gradle')
-      @project_type = :gradle
-    elsif File.exists?('package.json')
-      @project_type = :node
-    elsif File.exists?('Gemfile')
-      @project_type = :ruby
+    types.each do |item|
+      if File.exists? (item['file_requirement'])
+        chosen = item
+        break
+      end
     end
 
-    puts "Detected #{@project_type}...".yellow
-    @project_type
-  end
-
-  def install_dependencies
-    case @project_type
-      when :gradle
-        go_inside_and_run('./gradlew assemble')
-      when :node
-        go_inside_and_run('npm install')
-      when :ruby
-        go_inside_and_run('bundle install')
-      end
+    unless chosen.nil?
+      puts "#{chosen['type']} detected...".yellow
+      go_inside_and_run chosen['installation']
+    end
   end
 
   def cloneable_url

@@ -4,7 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/cesarferreira/gito/badges/gpa.svg)](https://codeclimate.com/github/cesarferreira/gito)
 [![Inline docs](http://inch-ci.org/github/cesarferreira/gito.svg?branch=master)](http://inch-ci.org/github/cesarferreira/gito)
 
-git helper tool to **clone**/**open**/**install**/**edit** a git project with a one-liner.
+git helper tool to **clone**/**open**/**auto-install**/**edit** a git project with a one-liner.
 
 
 <p align="center">
@@ -52,6 +52,16 @@ gito https://bitbucket.org/username/project
 
     $ gem install gito
 
+## Supported type detections/auto-intalls
+So far it auto-install this types:
+- Ruby
+- Gradle
+- nodejs
+- C
+- Elixir
+
+Create a pull request by editing [detector.json](detector.json) file if you want more types to be added.
+
 ## Internally what happens?
 
 Sample:
@@ -75,6 +85,10 @@ project_type_detector
 # because `ruby` was detected
 bundle install
 ```
+
+## todo
+- `-t` to clone into a temp directory
+- `-e` when has params, set the default editor
 
 ## Contributing
 I welcome and encourage all pull requests. It usually will take me within 24-48 hours to respond to any issue or request. Here are some basic rules to follow to ensure timely addition of your request:

@@ -1,0 +1,27 @@
+[
+  {
+    "file_requirement": "Gemfile",
+    "installation": "bundle install",
+    "type": "ruby"
+  },
+  {
+    "file_requirement": "build.gradle",
+    "installation": "./gradlew assemble",
+    "type": "gradle"
+  },
+  {
+    "file_requirement": "package.json",
+    "installation": "yarn",
+    "type": "node"
+  },
+  {
+    "file_requirement": "Makefile",
+    "installation": "make",
+    "type": "c"
+  },
+  {
+    "file_requirement": "mix.exs",
+    "installation": "mix deps.get",
+    "type": "elixir"
+  }
+]

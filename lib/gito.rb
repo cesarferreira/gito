@@ -66,9 +66,6 @@ class MainApp
     # Clone the repository
     project.clone
 
-    # Detect project type
-    project.detect_project_type
-
     # Open in editor
     if @should_edit
       project.open_editor

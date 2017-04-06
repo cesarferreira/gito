@@ -8,7 +8,7 @@ spec = Gem::Specification.new do |s|
   s.homepage        = 'https://github.com/cesarferreira/gito'
   s.license         = 'MIT'
   s.platform        = Gem::Platform::RUBY
-  s.summary         = 'git helper tool to clone/open/install/edit a git project with a one-liner'
+  s.summary         = 'git helper tool to clone/open/auto-install/edit a git project with a one-liner'
   s.files           = `git ls-files`.split("
 ")
   s.require_paths << 'lib'
@@ -22,4 +22,5 @@ spec = Gem::Specification.new do |s|
 
   s.add_dependency 'bundler', '~> 1.7'
   s.add_dependency 'colorize', '~> 0.7'
+  s.add_dependency 'safe_yaml', '~> 1.0.4'
 end
