@@ -1,12 +1,13 @@
 require 'safe_yaml'
 
 class ConfigManager
-	@conf_path = '~/.gito.yml'
-	@default_config = {"editor": "atom"}
 
 	def initialize
 		SafeYAML::OPTIONS[:default_mode] = :safe
 		SafeYAML::OPTIONS[:deserialize_symbols] = true
+
+		@conf_path = "#{Dir.home}/.gito.yml"
+		@default_config = {"editor": "atom"}
 	end
 
 	def write_editor(new_editor)
@@ -27,8 +28,9 @@ class ConfigManager
 			config = YAML.load(contents, :safe => true)
 		else
 			write @default_config
+			config = @default_config
 		end
 
-		config		
+		config
 	end
 end

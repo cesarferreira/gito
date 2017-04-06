@@ -16,7 +16,7 @@ git helper tool to **clone**/**open**/**auto-install**/**edit** a git project wi
 </p>
 
 ## Why?
-A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, go to the terminal, git clone, find out the folder name, go to the folder and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install` and open in your text editor of choice... Not anymore!
+A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, go to the terminal, git clone, find out the folder name, go to the folder and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install`, `pip install .`, `mix deps.get`, `make install`, you name it. And after that opening it in my text editor of choice... Not anymore!
 
 
 ## Usage
@@ -26,6 +26,7 @@ $ gito -h
 Usage: gito GIT_URL [OPTIONS]
 
 Options
+    -s, --set-editor EDITOR          Set a custom editor to open the project (e.g. "atom", "subl", "vim", etc.
     -e, --edit                       Open the project on an editor
     -o, --open                       Open the project on Finder
     -d, --dryrun                     Does not install the dependencies
@@ -41,6 +42,9 @@ gito cesarferreira/dryrun
 # git clone, install, open and edit the project
 gito cesarferreira/dryrun --edit --open
 
+# set the editor to be 'subl' from now on
+gito cesarferreira/dryrun -s subl
+
 # git clone, install, open and edit the project from github
 gito https://github.com/cesarferreira/dryrun -e -o
 
@@ -53,21 +57,25 @@ gito https://bitbucket.org/username/project
     $ gem install gito
 
 ## Supported type detections/auto-intalls
-So far it auto-install this types:
+So far it auto-installs these types:
 - Ruby
 - Gradle
-- nodejs
+- node.js
 - C
 - Elixir
+- Python
 
 Create a pull request by editing [detector.json](detector.json) file if you want more types to be added.
 
 ## Internally what happens?
 
-Sample:
-
+When you run this:
 ```bash
-# clone it
+gito cesarferreira/dryrun --edit --open
+```
+This will happen:
+```bash
+# clone
 git clone http://github.com/cesarferreira/dryrun
 
 # change directory
@@ -88,7 +96,6 @@ bundle install
 
 ## todo
 - `-t` to clone into a temp directory
-- `-e` when has params, set the default editor
 
 ## Contributing
 I welcome and encourage all pull requests. It usually will take me within 24-48 hours to respond to any issue or request. Here are some basic rules to follow to ensure timely addition of your request:

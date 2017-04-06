@@ -3,6 +3,7 @@ require 'tmpdir'
 require 'fileutils'
 require 'gito/version'
 require 'gito/project'
+require 'gito/config_manager'
 require 'openssl'
 require 'open3'
 require 'optparse'
@@ -17,6 +18,8 @@ class MainApp
     @should_edit = false
     @should_open = false
     @dryrun = false
+    @editor = nil
+    @setting_up = false
 
     # Parse Options
     create_options_parser(arguments)
@@ -28,7 +31,12 @@ class MainApp
       opts.separator ''
       opts.separator 'Options'
 
-      opts.on('-e', '--edit', 'Open the project on an editor') do |edit|
+      opts.on('-s EDITOR', '--set-editor EDITOR', 'Set a custom editor to open the project (e.g. "atom", "subl", "vim", etc.') do |editor|
+        @editor = editor.nil? ? nil : editor
+        @setting_up = true
+      end
+
+      opts.on('-e', '--edit', 'Open the project on an editor') do |editor|
         @should_edit = true
       end
 
@@ -54,12 +62,36 @@ class MainApp
     end
   end
 
+  def update_configuration
+    config_manager = ConfigManager.new
+    app_config = config_manager.get
+
+    if @editor.nil?
+      @editor = app_config[:editor]
+    else
+      config_manager.write_editor @editor
+    end
+  end
+
   def call
+
+    if @setting_up
+      if @editor.nil?
+          puts 'New new editor can\'t be empty'.red
+        else
+          update_configuration
+          puts 'Updated the editor to: ' + @editor.yellow
+      end
+    exit 1
+    end
 
     if @url.nil?
       puts 'You need to insert a valid GIT URL/folder'
       exit 1
     end
+
+    # handle the configuration
+    update_configuration
 
     project = Project.new(@url)
 
@@ -68,7 +100,8 @@ class MainApp
 
     # Open in editor
     if @should_edit
-      project.open_editor
+      # binding.pry
+      project.open_editor @editor
     end
 
     # Open in Finder

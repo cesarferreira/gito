@@ -1,27 +1,32 @@
 [
   {
     "file_requirement": "Gemfile",
-    "installation": "bundle install",
+    "installation_command": "bundle install",
     "type": "ruby"
   },
   {
     "file_requirement": "build.gradle",
-    "installation": "./gradlew assemble",
+    "installation_command": "./gradlew assemble",
     "type": "gradle"
   },
   {
     "file_requirement": "package.json",
-    "installation": "yarn",
+    "installation_command": "yarn",
     "type": "node"
   },
   {
     "file_requirement": "Makefile",
-    "installation": "make",
+    "installation_command": "make",
     "type": "c"
   },
   {
     "file_requirement": "mix.exs",
-    "installation": "mix deps.get",
+    "installation_command": "mix deps.get",
     "type": "elixir"
+  },
+  {
+    "file_requirement": "setup.py",
+    "installation_command": "pip install .",
+    "type": "python"
   }
 ]

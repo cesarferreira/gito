@@ -60,7 +60,7 @@ class Project
     puts "-------------------------------------------"
   end
 
-  def install_dependencies    
+  def install_dependencies
     file = File.read(@detector_json_path)
     types = JSON.parse(file)
     chosen = nil
@@ -69,14 +69,9 @@ class Project
 
     types.each do |item|
       if File.exists? (item['file_requirement'])
-        chosen = item
-        break
+        puts "#{item['type']} detected...".yellow
+        go_inside_and_run item['installation_command']
       end
-    end
-
-    unless chosen.nil?
-      puts "#{chosen['type']} detected...".yellow
-      go_inside_and_run chosen['installation']
     end
   end
 
@@ -110,9 +105,9 @@ class Project
     @destination_dir
   end
 
-  def open_editor
+  def open_editor(app)
     puts "Opening editor...".yellow
-    go_inside_and_run 'atom .'
+    go_inside_and_run "#{app} ."
   end
 
   def open_folder
