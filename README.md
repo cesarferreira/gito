@@ -30,6 +30,7 @@ Options
     -e, --edit                       Open the project on an editor
     -o, --open                       Open the project on Finder
     -d, --dryrun                     Does not install the dependencies
+    -t, --temp                       Clones the project into a temporary folder
     -h, --help                       Displays help
     -v, --version                    Displays the version
 ```
@@ -42,11 +43,14 @@ gito cesarferreira/dryrun
 # git clone, install, open and edit the project
 gito cesarferreira/dryrun --edit --open
 
+# git clone on a operating system /temp/ folder, install, and edit the project
+gito cesarferreira/dryrun --edit --temp
+
 # set the editor to be 'subl' from now on
 gito cesarferreira/dryrun -s subl
 
-# git clone, install, open and edit the project from github
-gito https://github.com/cesarferreira/dryrun -e -o
+# git clone, install, open and edit the project from github on a temp folder
+gito https://github.com/cesarferreira/dryrun -e -o -t
 
 # git clone, install from another git source
 gito https://bitbucket.org/username/project

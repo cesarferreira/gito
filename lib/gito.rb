@@ -7,6 +7,7 @@ require 'gito/config_manager'
 require 'openssl'
 require 'open3'
 require 'optparse'
+require 'tempfile'
 
 class MainApp
   def initialize(arguments)
@@ -14,12 +15,14 @@ class MainApp
     @url = %w(-h --help -v --version).include?(arguments.first) ? nil : arguments.shift
 
     # defaults
-    @app_path = nil
-    @should_edit = false
-    @should_open = false
-    @dryrun = false
-    @editor = nil
-    @setting_up = false
+    @options = {}
+    @options[:app_path] = nil
+    @options[:should_edit] = false
+    @options[:should_open] = false
+    @options[:dryrun] = false
+    @options[:editor] = nil
+    @options[:setting_up] = false
+    @options[:is_temp] = false
 
     # Parse Options
     create_options_parser(arguments)
@@ -32,20 +35,24 @@ class MainApp
       opts.separator 'Options'
 
       opts.on('-s EDITOR', '--set-editor EDITOR', 'Set a custom editor to open the project (e.g. "atom", "subl", "vim", etc.') do |editor|
-        @editor = editor.nil? ? nil : editor
-        @setting_up = true
+        @options[:editor] = editor.nil? ? nil : editor
+        @options[:setting_up] = true
       end
 
       opts.on('-e', '--edit', 'Open the project on an editor') do |editor|
-        @should_edit = true
+        @options[:should_edit] = true
       end
 
       opts.on('-o', '--open', 'Open the project on Finder') do |edit|
-        @should_open = true
+        @options[:should_open] = true
       end
 
       opts.on('-d', '--dryrun', 'Doesn\'t install the dependencies') do |dryrun|
-        @dryrun = true
+        @options[:dryrun] = true
+      end
+
+      opts.on('-t', '--temp', 'Clones the project into a temporary folder') do |is_temp|
+        @options[:is_temp] = true
       end
 
       opts.on('-h', '--help', 'Displays help') do
@@ -66,21 +73,21 @@ class MainApp
     config_manager = ConfigManager.new
     app_config = config_manager.get
 
-    if @editor.nil?
-      @editor = app_config[:editor]
+    if @options[:editor].nil?
+      @options[:editor] = app_config[:editor]
     else
-      config_manager.write_editor @editor
+      config_manager.write_editor @options[:editor]
     end
   end
 
   def call
 
-    if @setting_up
-      if @editor.nil?
+    if @options[:setting_up]
+      if @options[:editor].nil?
           puts 'New new editor can\'t be empty'.red
         else
           update_configuration
-          puts 'Updated the editor to: ' + @editor.yellow
+          puts 'Updated the editor to: ' + @options[:editor].yellow
       end
     exit 1
     end
@@ -96,20 +103,20 @@ class MainApp
     project = Project.new(@url)
 
     # Clone the repository
-    project.clone
+    project.clone(@options[:is_temp])
 
     # Open in editor
-    if @should_edit
+    if @options[:should_edit]
       # binding.pry
-      project.open_editor @editor
+      project.open_editor @options[:editor]
     end
 
     # Open in Finder
-    if @should_open
+    if @options[:should_open]
       project.open_folder
     end
 
-    unless @dryrun
+    unless @options[:dryrun]
       # Install dependencies
       project.install_dependencies
     end

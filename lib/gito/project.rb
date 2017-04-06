@@ -91,13 +91,19 @@ class Project
   ##
   ## CLONE THE REPOSITORY
   ##
-  def clone
+  def clone(is_temp_folder=false)
     cloneable = cloneable_url
 
-    @destination_dir = Dir.pwd + "/#{@destination}"
+    unless is_temp_folder
+      prefix = Dir.pwd + '/'
+    else
+      prefix = Dir.tmpdir + '/gito/'
+    end
+
+    @destination_dir = prefix + "#{@destination}"
 
     if File.directory?(@destination_dir)
-      puts 'The folder is not empty...'.yellow
+      puts "The folder #{@destination_dir.green} is not empty..."
     else
       AppUtils.execute("git clone --depth 1 #{cloneable} #{@destination_dir}")
     end
