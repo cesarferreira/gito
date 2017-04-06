@@ -98,9 +98,6 @@ project_type_detector
 bundle install
 ```
 
-## todo
-- `-t` to clone into a temp directory
-
 ## Contributing
 I welcome and encourage all pull requests. It usually will take me within 24-48 hours to respond to any issue or request. Here are some basic rules to follow to ensure timely addition of your request:
   1. If its a feature, bugfix, or anything please only change code to what you specify.
