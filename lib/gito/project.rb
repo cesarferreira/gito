@@ -124,7 +124,7 @@ class Project
 
   def go_inside_and_run(command)
     Dir.chdir(@destination_dir) do
-      AppUtils::execute command
+      AppUtils::execute command, false
     end
   end
 end

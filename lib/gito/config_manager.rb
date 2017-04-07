@@ -30,7 +30,6 @@ class ConfigManager
 			write @default_config
 			config = @default_config
 		end
-
 		config
 	end
 end

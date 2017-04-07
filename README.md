@@ -65,9 +65,13 @@ So far it auto-installs these types:
 - Ruby
 - Gradle
 - node.js
-- C
+- C/C++
 - Elixir
 - Python
+- Go (Govendor, Glide)
+- Cocoapods
+- Carthage
+- Swift Package Manager
 
 Create a pull request by editing [detector.json](detector.json) file if you want more types to be added.
 
