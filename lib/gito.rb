@@ -12,7 +12,7 @@ require 'tempfile'
 class MainApp
   def initialize(arguments)
 
-    @url = %w(-h --help -v --version).include?(arguments.first) ? nil : arguments.shift
+    @url = %w(-h --help -v --version -s --set-editor).include?(arguments.first) ? nil : arguments.shift
 
     # defaults
     @options = {}
@@ -81,7 +81,6 @@ class MainApp
   end
 
   def call
-
     if @options[:setting_up]
       if @options[:editor].nil?
           puts 'New new editor can\'t be empty'.red
@@ -89,12 +88,12 @@ class MainApp
           update_configuration
           puts 'Updated the editor to: ' + @options[:editor].yellow
       end
-    exit 1
+    exit
     end
 
     if @url.nil?
       puts 'You need to insert a valid GIT URL/folder'
-      exit 1
+      exit
     end
 
     # handle the configuration

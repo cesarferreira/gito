@@ -7,7 +7,7 @@ class ConfigManager
 		SafeYAML::OPTIONS[:deserialize_symbols] = true
 
 		@conf_path = "#{Dir.home}/.gito.yml"
-		@default_config = {"editor": "atom"}
+		@default_config = {"editor": "subl"}
 	end
 
 	def write_editor(new_editor)
