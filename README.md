@@ -1,9 +1,8 @@
 # gito
+![](http://ruby-gem-downloads-badge.herokuapp.com/gito?type=total)
 [![Gem Version](https://badge.fury.io/rb/gito.svg)](https://badge.fury.io/rb/gito)
 [![Build Status](https://travis-ci.org/cesarferreira/gito.svg?branch=master)](https://travis-ci.org/cesarferreira/gito)
 [![Code Climate](https://codeclimate.com/github/cesarferreira/gito/badges/gpa.svg)](https://codeclimate.com/github/cesarferreira/gito)
-[![Inline docs](http://inch-ci.org/github/cesarferreira/gito.svg?branch=master)](http://inch-ci.org/github/cesarferreira/gito)
-![](http://ruby-gem-downloads-badge.herokuapp.com/gito?type=total)
 
 git helper tool to **clone**/**open**/**auto-install**/**edit** a git project with a one-liner.
 
