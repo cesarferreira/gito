@@ -1,6 +1,7 @@
 ﻿require 'tmpdir'
 require 'fileutils'
 require 'uri'
+require 'open-uri'
 require 'json'
 require_relative './app_utils'
 require 'pry'
@@ -10,7 +11,7 @@ class Project
     @base_url = sanitize_url(url)
     @destination_dir = nil
     @destination = destination
-    @detector_json_path = '../detector.json'
+    @detector_json_path = 'https://raw.githubusercontent.com/cesarferreira/gito/master/detector.json'
   end
 
   def sanitize_url(url)
@@ -61,7 +62,7 @@ class Project
   end
 
   def install_dependencies
-    file = File.read(@detector_json_path)
+    file  = open(@detector_json_path) {|f| f.read }
     types = JSON.parse(file)
     chosen = nil
 
