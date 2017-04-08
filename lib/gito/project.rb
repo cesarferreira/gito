@@ -57,7 +57,7 @@ class Project
 
     puts "-------------------------------------------"
     puts "Please change directory"
-    puts "cd #{destination.yellow}"
+    puts "cd #{@destination_dir.yellow}"
     puts "-------------------------------------------"
   end
 
