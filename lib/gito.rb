@@ -106,7 +106,6 @@ class MainApp
 
     # Open in editor
     if @options[:should_edit]
-      # binding.pry
       project.open_editor @options[:editor]
     end
 

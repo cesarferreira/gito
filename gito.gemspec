@@ -17,7 +17,7 @@ spec = Gem::Specification.new do |s|
   s.bindir = 'bin'
   s.executables << 'gito'
   s.add_development_dependency 'rake', '~> 10.0'
-  s.add_development_dependency 'pry-byebug', '~> 3.2'
+  # s.add_development_dependency 'pry-byebug', '~> 3.2'
   s.add_development_dependency 'rspec'
 
   s.add_dependency 'bundler', '~> 1.7'

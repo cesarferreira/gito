@@ -4,7 +4,6 @@ require 'uri'
 require 'open-uri'
 require 'json'
 require_relative './app_utils'
-require 'pry'
 
 class Project
   def initialize(url)
