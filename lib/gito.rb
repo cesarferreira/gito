@@ -23,6 +23,7 @@ class MainApp
     @options[:editor] = nil
     @options[:setting_up] = false
     @options[:is_temp] = false
+    @options[:shell_copy] = true
 
     # Parse Options
     create_options_parser(arguments)
@@ -53,6 +54,10 @@ class MainApp
 
       opts.on('-t', '--temp', 'Clones the project into a temporary folder') do |is_temp|
         @options[:is_temp] = true
+      end
+
+      opts.on('-k', '--keep', 'Clones the whole git history and not just the last snapshot') do |is_temp|
+        @options[:shell_copy] = false
       end
 
       opts.on('-h', '--help', 'Displays help') do
@@ -102,7 +107,7 @@ class MainApp
     project = Project.new(@url)
 
     # Clone the repository
-    project.clone(@options[:is_temp])
+    project.clone(@options[:is_temp], @options[:shell_copy])
 
     # Open in editor
     if @options[:should_edit]
