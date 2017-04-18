@@ -31,6 +31,7 @@ Options
     -o, --open                       Open the project on Finder
     -d, --dryrun                     Does not install the dependencies
     -t, --temp                       Clones the project into a temporary folder
+    -k, --keep                       Clones the whole git history and not just the last snapshot
     -h, --help                       Displays help
     -v, --version                    Displays the version
 ```
