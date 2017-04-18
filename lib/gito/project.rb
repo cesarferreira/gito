@@ -53,10 +53,11 @@ class Project
     # AppUtils::execute 'echo "cd '+@destination+'" > ' + temp_script_name
     # AppUtils::execute '. '+temp_script_name
     # AppUtils::execute 'rm -rf ' + temp_script_name
+    short_path = @destination_dir.to_s.gsub(Dir.home, '~')
 
     puts "-------------------------------------------"
     puts "Please change directory"
-    puts "cd #{@destination_dir.yellow}"
+    puts "cd #{short_path.yellow}"
     puts "-------------------------------------------"
   end
 
@@ -105,8 +106,8 @@ class Project
     if File.directory?(@destination_dir)
       puts "The folder #{@destination_dir.green} is not empty..."
     else
-      concat = shell_copy ? '--depth 1' : ''
-      AppUtils.execute("git clone #{concat} #{url} #{@destination_dir}")
+      shell_copy_string = shell_copy ? '--depth 1' : ''
+      AppUtils.execute("git clone #{shell_copy_string} --recursive #{url} #{@destination_dir}")
     end
 
     @destination_dir
