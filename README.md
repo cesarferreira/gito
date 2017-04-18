@@ -73,6 +73,7 @@ So far it auto-installs these types:
 - Cocoapods
 - Carthage
 - Swift Package Manager
+- Rust
 
 Create a pull request by editing [detector.json](detector.json) file if you want more types to be added.
 

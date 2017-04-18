@@ -28,30 +28,35 @@
     "file_requirement": "setup.py",
     "installation_command": "pip install .",
     "type": "python"
-  }, 
+  },
   {
     "file_requirement": "Cartfile",
     "installation_command": "carthage update",
     "type": "carthage"
-  }, 
+  },
   {
     "file_requirement": "Podfile",
     "installation_command": "pod install",
     "type": "Cocoapods"
-  }, 
+  },
   {
     "file_requirement": "Package.swift",
     "installation_command": "swift build",
     "type": "Swift Package Manager"
-  }, 
+  },
   {
     "file_requirement": "glide.yaml",
     "installation_command": "glide install",
     "type": "Go lang - Glide"
-  }, 
+  },
   {
     "file_requirement": "vendor.json",
     "installation_command": "govendor fetch",
     "type": "Go lang - Govendor"
+  },
+  {
+    "file_requirement": "Cargo.toml",
+    "installation_command": "cargo build --all",
+    "type": "Rust - Cargo"
   }
 ]
