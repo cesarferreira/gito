@@ -33,15 +33,19 @@ class Project
   end
 
   def destination
-    unless @base_url.include? 'github.com'
-      return Digest::SHA256.hexdigest @base_url
-    end
-
     stripped_url = @base_url.gsub('.git', '')
     stripped_url = stripped_url.gsub('.git', '')
     stripped_url = stripped_url.gsub('git@github.com:', '')
     stripped_url = stripped_url.gsub('https://github.com/', '')
     stripped_url.gsub('http://github.com/', '')
+
+    if stripped_url.start_with?('http')
+      stripped_url = stripped_url.split('/').last(2).join('/')
+    end
+
+    if stripped_url.include?(':') && stripped_url.start_with?('git@')
+      stripped_url = stripped_url.split(':').last
+    end
 
     stripped_url.gsub('/','-')
   end
@@ -76,7 +80,7 @@ class Project
     end
   end
 
-  def cloneable_url
+  def retrieve_cloneable_url
     starts_with_git = @base_url.split(//).first(4).join.eql? 'git@'
     ends_with_git = @base_url.split(//).last(4).join.eql? '.git'
 
@@ -93,7 +97,7 @@ class Project
   ## CLONE THE REPOSITORY
   ##
   def clone(is_temp_folder=false, shell_copy=true)
-    url = cloneable_url
+    url = retrieve_cloneable_url
 
     unless is_temp_folder
       prefix = Dir.pwd + '/'
@@ -105,6 +109,8 @@ class Project
 
     if File.directory?(@destination_dir)
       puts "The folder #{@destination_dir.green} is not empty..."
+      go_inside_and_run "git reset --hard HEAD"
+      go_inside_and_run "git pull"
     else
       shell_copy_string = shell_copy ? '--depth 1' : ''
       AppUtils.execute("git clone #{shell_copy_string} --recursive #{url} #{@destination_dir}")
