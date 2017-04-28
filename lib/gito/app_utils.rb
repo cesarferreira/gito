@@ -8,7 +8,7 @@ class AppUtils
       puts "\n\n======================================================\n\n"
       puts ' Something went wrong while executing this:'.red
       puts "  $ #{command}\n".yellow
-      puts "======================================================\n\n"
+      puts "======================================================\n"
       exit 1 if should_exit
     end
   end

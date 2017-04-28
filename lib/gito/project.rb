@@ -34,35 +34,25 @@ class Project
 
   def destination
     stripped_url = @base_url.gsub('.git', '')
-    stripped_url = stripped_url.gsub('.git', '')
-    stripped_url = stripped_url.gsub('git@github.com:', '')
-    stripped_url = stripped_url.gsub('https://github.com/', '')
-    stripped_url.gsub('http://github.com/', '')
 
     if stripped_url.start_with?('http')
-      stripped_url = stripped_url.split('/').last(2).join('/')
+      stripped_url = stripped_url.split('/').last
     end
 
     if stripped_url.include?(':') && stripped_url.start_with?('git@')
-      stripped_url = stripped_url.split(':').last
+      stripped_url = stripped_url.split(':').last.split('/').last
     end
 
-    stripped_url.gsub('/','-')
+    stripped_url
   end
 
   def change_directory
-    # TODO aparently this doesn't work because ruby forks the terminal process and can't communicate with his parent
-
-    # temp_script_name = './temp.sh'
-    # AppUtils::execute 'echo "cd '+@destination+'" > ' + temp_script_name
-    # AppUtils::execute '. '+temp_script_name
-    # AppUtils::execute 'rm -rf ' + temp_script_name
     short_path = @destination_dir.to_s.gsub(Dir.home, '~')
 
-    puts "-------------------------------------------"
+    puts "\n-------------------------------------------"
     puts "Please change directory"
     puts "cd #{short_path.yellow}"
-    puts "-------------------------------------------"
+    puts "-------------------------------------------\n\n"
   end
 
   def install_dependencies
@@ -74,7 +64,7 @@ class Project
 
     types.each do |item|
       if File.exists? (item['file_requirement'])
-        puts "#{item['type']} detected...".yellow
+        puts "\n😎  #{item['type']} detected...\n".yellow
         go_inside_and_run item['installation_command']
       end
     end
@@ -108,10 +98,11 @@ class Project
     @destination_dir = prefix + "#{@destination}"
 
     if File.directory?(@destination_dir)
-      puts "The folder #{@destination_dir.green} is not empty..."
+      puts "\n🤔  The folder #{@destination_dir.green} is not empty...\n\n"
       go_inside_and_run "git reset --hard HEAD"
       go_inside_and_run "git pull"
     else
+      puts "\n😙  Cloning #{url.green}...\n\n"
       shell_copy_string = shell_copy ? '--depth 1' : ''
       AppUtils.execute("git clone #{shell_copy_string} --recursive #{url} #{@destination_dir}")
     end
@@ -120,12 +111,12 @@ class Project
   end
 
   def open_editor(app)
-    puts "Opening editor...".yellow
+    puts "\n😁‍  Opening editor...".yellow
     go_inside_and_run "#{app} ."
   end
 
   def open_folder
-    puts 'Opening folder...'.yellow
+    puts "\n😳  Opening folder...".yellow
     go_inside_and_run 'open .'
   end
 

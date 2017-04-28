@@ -124,6 +124,8 @@ class MainApp
       project.install_dependencies
     end
 
+    puts "\n🚘  Finished".yellow
+
     # Change to directory
     project.change_directory
 

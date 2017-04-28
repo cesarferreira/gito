@@ -23,7 +23,7 @@ class ConfigManager
 
 	def get
 		if File.exists? (@conf_path)
-			file = File.open(@conf_path, "rb")
+			file = File.open(@conf_path, 'rb')
 			contents = file.read
 			config = YAML.load(contents, :safe => true)
 		else
