@@ -15,11 +15,55 @@ git helper tool to **clone**/**open**/**auto-install**/**edit** a git project wi
   > <strong>gito</strong> <i>cesarferreira/dryrun -e</i>
 </p>
 
-## Why?
-A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, go to the terminal, git clone, find out the folder name, go to the folder and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install`, `pip install .`, `mix deps.get`, `make install`, you name it. And after that opening it in my text editor of choice... Not anymore!
 
+## **Features**
+
+- [x] Quickly clone any git project and changes directory.
+- [x] Can automatically open the folder in `finder` .
+- [x] Can automatically open the project in any editor.
+- [x] Can clone the project into a system temporary folder.
+- [x] Auto detects project type and auto installs dependencies accordingly.
+- [x] The project type detections can be added without releasing a new `gem` version.
+<!-- - [x] Supports macOS. -->
 
 ## Usage
+
+🚙  git clones this url: https://github.com/cesarferreira/dryrun
+
+```bash
+$ gito cesarferreira/dryrun
+```
+
+🚕  git clone, install, open and edit the project
+```bash
+$ gito cesarferreira/dryrun --edit --open
+```
+
+🚗 git clone on a operating system /temp/ folder, install, and edit the project
+```bash
+$ gito cesarferreira/dryrun --edit --temp
+```
+
+🚓 set the editor to be 'subl' from now on
+```bash
+$ gito cesarferreira/dryrun -s subl
+```
+
+🚕 git clone, install, open and edit the project from github on a temp folder
+```bash
+$ gito https://github.com/cesarferreira/dryrun -e -o -t
+```
+
+🏎 git clone, install from another git source
+```bash
+$ gito https://bitbucket.org/username/project
+```
+
+## Installation
+
+    $ gem install gito
+
+## Help
 
 ```bash
 $ gito -h
@@ -36,32 +80,8 @@ Options
     -v, --version                    Displays the version
 ```
 
-Examples:
-```bash
-# git clone this https://github.com/cesarferreira/dryrun
-gito cesarferreira/dryrun
 
-# git clone, install, open and edit the project
-gito cesarferreira/dryrun --edit --open
-
-# git clone on a operating system /temp/ folder, install, and edit the project
-gito cesarferreira/dryrun --edit --temp
-
-# set the editor to be 'subl' from now on
-gito cesarferreira/dryrun -s subl
-
-# git clone, install, open and edit the project from github on a temp folder
-gito https://github.com/cesarferreira/dryrun -e -o -t
-
-# git clone, install from another git source
-gito https://bitbucket.org/username/project
-```
-
-## Installation
-
-    $ gem install gito
-
-## Supported type detections/auto-intalls
+## Supported type detections/auto-installs
 So far it auto-installs these types:
 - Ruby
 - Gradle
@@ -77,32 +97,8 @@ So far it auto-installs these types:
 
 Create a pull request by editing [detector.json](detector.json) file if you want more types to be added.
 
-## Internally what happens?
-
-When you run this:
-```bash
-gito cesarferreira/dryrun --edit --open
-```
-This will happen:
-```bash
-# clone
-git clone http://github.com/cesarferreira/dryrun
-
-# change directory
-cd dryrun
-
-# open an editor of choice if --editor flag
-atom .
-
-# open the folder if --open flag
-open .
-
-# find out what kind of project it is
-project_type_detector
-
-# because `ruby` was detected
-bundle install
-```
+## Why?
+A lot of times I find myself wanting to try some code from github and in order to do so I have to copy the git URL, go to the terminal, git clone, find out the folder name, go to the folder and based on the type of project I need to `bundle install`, `./gradlew assemble`, `npm install`, `pip install .`, `mix deps.get`, `make install`, you name it. And after that, opening it in my text editor of choice manually... Not anymore!
 
 ## Contributing
 I welcome and encourage all pull requests. It usually will take me within 24-48 hours to respond to any issue or request. Here are some basic rules to follow to ensure timely addition of your request:
