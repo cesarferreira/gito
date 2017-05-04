@@ -94,6 +94,7 @@ So far it auto-installs these types:
 - Carthage
 - Swift Package Manager
 - Rust
+- Haskell
 
 Create a pull request by editing [detector.json](detector.json) file if you want more types to be added.
 

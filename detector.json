@@ -58,5 +58,10 @@
     "file_requirement": "Cargo.toml",
     "installation_command": "cargo build --all",
     "type": "Rust - Cargo"
+  },
+  {
+    "file_requirement": "stack.yaml",
+    "installation_command": "stack build",
+    "type": "Haskell"
   }
 ]
