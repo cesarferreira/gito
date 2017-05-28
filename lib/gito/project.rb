@@ -64,7 +64,7 @@ class Project
 
     types.each do |item|
       if File.exists? (item['file_requirement'])
-        puts "\n😎  #{item['type']} detected...\n".yellow
+        puts "😎  #{item['type']} detected...".yellow
         go_inside_and_run item['installation_command']
       end
     end
@@ -98,12 +98,13 @@ class Project
     @destination_dir = prefix + "#{@destination}"
 
     if File.directory?(@destination_dir)
-      puts "\n🤔  The folder #{@destination_dir.green} is not empty...\n\n"
+      puts "🤔  The folder #{@destination_dir.green} is not empty..."
       go_inside_and_run "git reset --hard HEAD"
       go_inside_and_run "git pull"
     else
-      puts "\n😙  Cloning #{url.green}...\n\n"
+      puts "😙  Cloning #{url.green}..."
       shell_copy_string = shell_copy ? '--depth 1' : ''
+      puts shell_copy_string
       AppUtils.execute("git clone #{shell_copy_string} --recursive #{url} #{@destination_dir}")
     end
 
@@ -111,12 +112,12 @@ class Project
   end
 
   def open_editor(app)
-    puts "\n😁‍  Opening editor...".yellow
+    puts "😁‍  Opening editor...".yellow
     go_inside_and_run "#{app} ."
   end
 
   def open_folder
-    puts "\n😳  Opening folder...".yellow
+    puts "😳  Opening folder...".yellow
     go_inside_and_run 'open .'
   end
 

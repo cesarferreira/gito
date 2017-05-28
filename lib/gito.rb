@@ -23,7 +23,7 @@ class MainApp
     @options[:editor] = nil
     @options[:setting_up] = false
     @options[:is_temp] = false
-    @options[:shell_copy] = true
+    @options[:shell_copy] = false
 
     # Parse Options
     create_options_parser(arguments)
@@ -56,8 +56,8 @@ class MainApp
         @options[:is_temp] = true
       end
 
-      opts.on('-k', '--keep', 'Clones the whole git history and not just the last snapshot') do |is_temp|
-        @options[:shell_copy] = false
+      opts.on('-c', '--shell-copy', 'Only makes a shell copy of the repository') do |is_temp|
+        @options[:shell_copy] = true
       end
 
       opts.on('-h', '--help', 'Displays help') do
