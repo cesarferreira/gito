@@ -119,8 +119,8 @@ class MainApp
       project.open_folder
     end
 
+    # Install dependencies
     unless @options[:dryrun]
-      # Install dependencies
       project.install_dependencies
     end
 

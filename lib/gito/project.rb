@@ -74,11 +74,15 @@ class Project
     starts_with_git = @base_url.split(//).first(4).join.eql? 'git@'
     ends_with_git = @base_url.split(//).last(4).join.eql? '.git'
 
+    return "git@github.com:#{@base_url}.git" if @base_url.split('/').length == 2
+
     # ends with git but doesnt start with git
     return @base_url if ends_with_git && !starts_with_git
 
+    user_repo_pair = @base_url.split('https://github.com/').last
+
     # ends with git but doesnt start with git
-    return "#{@base_url}.git" if !ends_with_git && !starts_with_git
+    return "git@github.com:#{user_repo_pair}.git" if !ends_with_git && !starts_with_git
 
     @base_url
   end
