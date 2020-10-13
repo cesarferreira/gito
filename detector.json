@@ -63,5 +63,10 @@
     "file_requirement": "stack.yaml",
     "installation_command": "stack build",
     "type": "Haskell"
+  },
+  {
+    "file_requirement": "pubspec.yaml",
+    "installation_command": "flutter pub get",
+    "type": "Flutter"
   }
 ]
